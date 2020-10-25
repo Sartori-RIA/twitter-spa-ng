@@ -7,6 +7,8 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 import {RecoverComponent} from './recover/recover.component';
 import {ConfirmComponent} from './confirm/confirm.component';
 import {SharedModule} from '../shared/shared.module';
+import { PinCodeComponent } from './pin-code/pin-code.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {SharedModule} from '../shared/shared.module';
     SignInComponent,
     SignUpComponent,
     RecoverComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    PinCodeComponent,
+    ResetPasswordComponent
   ],
   imports: [
     SharedModule,

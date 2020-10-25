@@ -15,6 +15,10 @@
     <button (click)="onSubmit()" mat-raised-button color="accent" matTooltip="Entrar">
       <mat-icon>login</mat-icon>
     </button>
+
+    <div [ngStyle]="{paddingTop: '2em'}" fxLayoutAlign="center">
+      <button routerLink="/auth/recuperar" mat-button>Esqueci minha senha</button>
+    </div>
   </div>
 
 </div>

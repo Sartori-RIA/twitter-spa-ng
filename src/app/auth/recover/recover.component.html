@@ -1,1 +1,13 @@
-<p>recover works!</p>
+<div fxFlex fxLayout="column" fxLayoutAlign="center">
+  <h1>Entrar na plataforma</h1>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput [formControl]="emailField">
+  </mat-form-field>
+
+  <button (click)="onSubmit()" mat-raised-button color="accent" matTooltip="Entrar">
+    <mat-icon>send</mat-icon>
+  </button>
+
+</div>
