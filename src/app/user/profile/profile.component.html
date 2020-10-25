@@ -1,1 +1,28 @@
-<p>profile works!</p>
+<div *ngIf="profile$ | async; let user">
+
+  <div [ngStyle]="{
+    backgroundImage: 'url(' + user.banner.url + ')',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '500px'
+   }">
+  </div>
+  <div class="avatar-position">
+    <ngx-avatar class="my-avatar"
+                size="200"
+                (clickOnAvatar)="openAvatarFull(user)"
+                [src]="user.avatar.thumb.url">
+    </ngx-avatar>
+    <h2>{{user.name}}</h2>
+    <span class="muted-text">@{{user.user_name}}</span>
+
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Postagens"></mat-tab>
+      <mat-tab label="Me seguem"></mat-tab>
+      <mat-tab label="Seguindo"></mat-tab>
+    </mat-tab-group>
+  </div>
+
+
+</div>

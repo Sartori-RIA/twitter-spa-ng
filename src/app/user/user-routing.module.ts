@@ -5,7 +5,7 @@ import {UserResolver} from '../core/resolvers/user.resolver';
 
 const routes: Routes = [
   {
-    path: ':user_name', component: ProfileComponent, resolve: {
+    path: ':id', component: ProfileComponent, resolve: {
       user: UserResolver
     }
   }

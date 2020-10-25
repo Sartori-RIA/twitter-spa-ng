@@ -16,7 +16,7 @@ export abstract class BaseService<T extends BaseModel> {
     return this.http.get<T[]>(this.url + '/search', {params: {q: search}}).pipe();
   }
 
-  show(id: number): Observable<T> {
+  show(id: number | string): Observable<T> {
     return this.http.get<T>(`${this.url}/${id}`).pipe();
   }
 

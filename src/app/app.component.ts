@@ -3,6 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from './store';
 import {selectIsLoggedIn} from './store/auth/auth.selectors';
 import {selectUser} from './store/user/user.selectors';
+import {User} from './core/models/user';
 
 @Component({
   selector: 'app-root',
