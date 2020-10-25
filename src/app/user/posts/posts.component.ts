@@ -21,7 +21,7 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.activatedRoute.parent.params.subscribe(({id}) => {
-      this.posts$ = this.postagesService.index(id).pipe(map((res) => res.body));
+      this.posts$ = this.postagesService.userPostages(id).pipe(map((res) => res.body));
     });
   }
 

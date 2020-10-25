@@ -1,5 +1,5 @@
-<div style="height: 100%" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="mat-elevation-z18">
+<div [ngStyle]="{height: '100%'}" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card [ngStyle]="{minWidth: '33vh', minHeight: '33vh'}" class="mat-elevation-z18">
     <div class="container">
       <router-outlet></router-outlet>
     </div>
