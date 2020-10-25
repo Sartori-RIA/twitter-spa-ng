@@ -8,7 +8,7 @@ import {ConfirmComponent} from './confirm/confirm.component';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', component: AuthLayoutComponent, children: [
+    path: '', component: AuthLayoutComponent, children: [
       {path: 'entrar', component: SignInComponent},
       {path: 'registrar', component: SignUpComponent},
       {path: 'recuperar', component: RecoverComponent},

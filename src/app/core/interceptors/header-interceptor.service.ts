@@ -2,15 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {AppState} from '../../store';
+import {Store} from '@ngrx/store';
+import {LocalStorage} from '../../utils/storage';
 
 @Injectable()
 export class HeaderInterceptorService implements HttpInterceptor {
 
-  constructor() {
+  constructor(private store: Store<AppState>) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
+    const token = LocalStorage.jwt();
     let headers = req.headers.append('Accept', 'application/json');
     headers = headers.append('Authorization', token);
 
@@ -21,7 +24,22 @@ export class HeaderInterceptorService implements HttpInterceptor {
     const cloneReq = req.clone({headers});
     return next.handle(cloneReq).pipe(
       catchError((err) => {
-        console.log('deu ruim');
+        switch (err.status) {
+          case 500:
+            console.log('internal server error');
+            break;
+          case 403:
+            //this.store.dispatch(SIGN_OUT());
+            break;
+          case 401:
+            if (!req.url.includes('/auth/sign_in')) {
+//              this.store.dispatch(SIGN_OUT());
+            }
+            break;
+          case 0:
+            console.log('server offline');
+            break;
+        }
         return throwError(err);
       })
     );

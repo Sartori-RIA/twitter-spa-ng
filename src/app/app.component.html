@@ -6,8 +6,21 @@
   <button mat-icon-button matTooltip="Buscar por twittes e usuários">
     <mat-icon>search</mat-icon>
   </button>
-  <button mat-icon-button matTooltip="Meu perfil">
-    <mat-icon>person</mat-icon>
-  </button>
+
+  <div *ngIf="loggedIn$ | async; else withoutSession">
+    <div *ngIf="user$ | async; let user">
+      <ngx-avatar class="my-avatar"
+                  [size]="200"
+                  [name]="user?.user_name"
+                  [src]="user?.avatar?.url"></ngx-avatar>
+    </div>
+
+  </div>
+  <ng-template #withoutSession>
+    <button routerLink="auth/entrar" mat-icon-button matTooltip="Meu perfil">
+      <mat-icon>person</mat-icon>
+    </button>
+  </ng-template>
 </mat-toolbar>
 
+<router-outlet></router-outlet>

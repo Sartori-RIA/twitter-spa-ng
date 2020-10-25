@@ -30,4 +30,8 @@ export class UsersService extends BaseService<User> {
   stopToFollow(id: number, followId: number): Observable<Follow> {
     return this.http.delete<Follow>(`${this.url}/${id}/follows/${followId}`);
   }
+
+  me(): Observable<User> {
+    return super.show(1);
+  }
 }
