@@ -9,6 +9,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
 
 
 const MAT_MODULES = [
@@ -21,6 +22,7 @@ const MAT_MODULES = [
   MatInputModule,
   MatMenuModule,
   MatTabsModule,
+  MatListModule,
 ];
 
 @NgModule({

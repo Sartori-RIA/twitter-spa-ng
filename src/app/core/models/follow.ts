@@ -7,3 +7,5 @@ export interface Follow extends BaseModel {
   user: User;
   follow: Follow;
 }
+
+export type FollowTitles = 'SEGUIR' | 'DEIXAR DE SEGUIR';

@@ -4,6 +4,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material/material.module';
 import {AvatarModule} from 'ngx-avatar';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { FollowBtnComponent } from './components/follow-btn/follow-btn.component';
 
 const NG_MODULES = [
   CommonModule,
@@ -16,7 +18,7 @@ const LIBS_MODULES = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [UserCardComponent, FollowBtnComponent],
   imports: [
     ...NG_MODULES,
     ...LIBS_MODULES,
@@ -25,7 +27,8 @@ const LIBS_MODULES = [
   exports: [
     ...NG_MODULES,
     ...LIBS_MODULES,
-    MaterialModule
+    MaterialModule,
+    UserCardComponent
   ]
 })
 export class SharedModule {

@@ -1,0 +1,12 @@
+<mat-list-item>
+  <div>
+    <ngx-avatar [src]="user.avatar.thumb.url"></ngx-avatar>
+  </div>
+  <div [ngStyle]="{padding: '2em'}">
+    <h3>{{user.name}}</h3>
+    <span class="muted-text">@{{user.user_name}}</span>
+  </div>
+  <div>
+    <app-follow-btn [title]="title"></app-follow-btn>
+  </div>
+</mat-list-item>
