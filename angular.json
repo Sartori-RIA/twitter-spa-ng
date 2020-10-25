@@ -130,6 +130,7 @@
   },
   "defaultProject": "twitter-spa-ng",
   "cli": {
-    "analytics": "0574048b-052a-4c63-a6d5-1f52cddf9006"
+    "analytics": "0574048b-052a-4c63-a6d5-1f52cddf9006",
+    "defaultCollection": "@ngrx/schematics"
   }
 }
