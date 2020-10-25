@@ -5,7 +5,7 @@
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     width: '100%',
-    height: '500px'
+    height: '400px'
    }">
   </div>
   <div class="avatar-position">
@@ -17,11 +17,12 @@
     <h2>{{user.name}}</h2>
     <span class="muted-text">@{{user.user_name}}</span>
 
-    <mat-tab-group mat-align-tabs="center">
-      <mat-tab label="Postagens"></mat-tab>
-      <mat-tab label="Me seguem"></mat-tab>
-      <mat-tab label="Seguindo"></mat-tab>
-    </mat-tab-group>
+    <nav mat-tab-nav-bar mat-align-tabs="center" >
+      <a mat-tab-link routerLink="postagens">Postagens</a>
+      <a mat-tab-link routerLink="seguidores">Seguidores</a>
+      <a mat-tab-link routerLink="seguindo">Seguindo</a>
+    </nav>
+    <router-outlet></router-outlet>
   </div>
 
 

@@ -15,11 +15,11 @@ export class UsersService extends BaseService<User> {
     super(http, environment.api_url + 'users');
   }
 
-  followers(id: number): Observable<HttpResponse<Follow[]>> {
+  followers(id: number | string): Observable<HttpResponse<Follow[]>> {
     return this.http.get<Follow[]>(`${this.url}/${id}/followers`, {observe: 'response'});
   }
 
-  follows(id: number): Observable<HttpResponse<Follow[]>> {
+  follows(id: number | string): Observable<HttpResponse<Follow[]>> {
     return this.http.get<Follow[]>(`${this.url}/${id}/follows`, {observe: 'response'});
   }
 
