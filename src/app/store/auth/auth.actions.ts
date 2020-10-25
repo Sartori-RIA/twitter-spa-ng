@@ -1,7 +1,7 @@
 import {createAction, props} from '@ngrx/store';
-import {User} from '../../core/models/user';
+import {SignInPayload, User} from '../../core/models/user';
 
-export const SIGN_IN = createAction('[AUTH/API] sign in', props<{ user: User }>());
+export const SIGN_IN = createAction('[AUTH/API] sign in', props<{ user: SignInPayload }>());
 
 export const SIGN_IN_DONE = createAction('[AUTH/API] sign in done', props<{ user: User }>());
 

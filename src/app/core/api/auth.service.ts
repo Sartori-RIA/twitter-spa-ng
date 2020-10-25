@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {User} from '../models/user';
+import {SignInPayload, User} from '../models/user';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {LocalStorage} from '../../utils/storage';
@@ -15,8 +15,8 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  onSignIn(data: User): Observable<User> {
-    return this.http.post<User>(`${this.url}sign_in`, {user: data}, {observe: 'response'}).pipe(map((response) => {
+  onSignIn(data: SignInPayload): Observable<User> {
+    return this.http.post<User>(`${this.url}sign_in`, data, {observe: 'response'}).pipe(map((response) => {
       const token = response.headers.get('Authorization');
       LocalStorage.setJwt(token);
       LocalStorage.setUser(response.body);
@@ -35,8 +35,8 @@ export class AuthService {
   resetPassword(newPassword: string): Observable<HttpResponse<any>> {
     return this.http.put<any>(
       `${this.url}reset_passwords`,
-      { password: newPassword },
-      { observe: 'response' }
+      {password: newPassword},
+      {observe: 'response'}
     );
   }
 

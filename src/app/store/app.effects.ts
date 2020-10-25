@@ -12,7 +12,7 @@ import {LocalStorage} from '../utils/storage';
 @Injectable()
 export class AppEffects {
 
-/*
+
   init$ = createEffect(() => this.actions$.pipe(
     ofType(ROOT_EFFECTS_INIT),
     take(1),
@@ -33,7 +33,7 @@ export class AppEffects {
       }
     })
   ), {dispatch: false});
-*/
+
   constructor(private actions$: Actions,
               private store: Store<AppState>) {
   }

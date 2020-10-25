@@ -5,6 +5,7 @@ import {catchError} from 'rxjs/operators';
 import {AppState} from '../../store';
 import {Store} from '@ngrx/store';
 import {LocalStorage} from '../../utils/storage';
+import {SIGN_OUT} from '../../store/auth/auth.actions';
 
 @Injectable()
 export class HeaderInterceptorService implements HttpInterceptor {
@@ -15,7 +16,9 @@ export class HeaderInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = LocalStorage.jwt();
     let headers = req.headers.append('Accept', 'application/json');
-    headers = headers.append('Authorization', token);
+    if (token) {
+      headers = headers.append('Authorization', token);
+    }
 
     if (!(req.body instanceof FormData)) {
       headers = headers.append('Content-Type', 'application/json');
@@ -29,11 +32,11 @@ export class HeaderInterceptorService implements HttpInterceptor {
             console.log('internal server error');
             break;
           case 403:
-            //this.store.dispatch(SIGN_OUT());
+            this.store.dispatch(SIGN_OUT());
             break;
           case 401:
             if (!req.url.includes('/auth/sign_in')) {
-//              this.store.dispatch(SIGN_OUT());
+              this.store.dispatch(SIGN_OUT());
             }
             break;
           case 0:

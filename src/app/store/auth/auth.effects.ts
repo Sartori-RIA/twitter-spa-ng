@@ -30,7 +30,7 @@ export class AuthEffects {
   navigateAfterSignIn$ = createEffect(() => this.actions$.pipe(
     ofType(SIGN_IN_DONE),
     tap(() => {
-      this.router.navigate(['/dash']);
+      this.router.navigate(['/']);
     })
   ), {dispatch: false});
 
