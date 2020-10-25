@@ -1,6 +1,13 @@
-<mat-list role="list">
-  <app-user-card *ngFor="let follow of follows$ | async"
-                 [user]="follow.follow"
-                 title="DEIXAR DE SEGUIR"
-  ></app-user-card>
-</mat-list>
+<div [ngStyle]="{padding: '4em'}">
+  <div *ngFor="let follower of follows$ | async">
+    <div *ngIf="(follows$ | async)?.length > 0; else emptyList">
+      <app-user-card
+        [user]="follower.user"
+        title="SEGUIR"
+      ></app-user-card>
+    </div>
+    <ng-template #emptyList>
+      <p>Você ainda não segue ninguém</p>
+    </ng-template>
+  </div>
+</div>

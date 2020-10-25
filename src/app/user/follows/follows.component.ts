@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {Follow} from '../../core/models/follow';
-import {UsersService} from '../../core/api/users.service';
 import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
+import {FollowService} from '../../core/api/follow.service';
 
 @Component({
   selector: 'app-follows',
@@ -15,13 +15,13 @@ export class FollowsComponent implements OnInit, OnDestroy {
   follows$: Observable<Follow[]>;
   private subscription: Subscription;
 
-  constructor(private userService: UsersService,
+  constructor(private followService: FollowService,
               private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.subscription = this.activatedRoute.parent.params.subscribe(({id}) => {
-      this.follows$ = this.userService.follows(id).pipe(map((res) => res.body));
+      this.follows$ = this.followService.follows(id).pipe(map((res) => res.body));
     });
   }
 

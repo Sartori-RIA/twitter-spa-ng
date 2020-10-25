@@ -6,6 +6,7 @@ import {MaterialModule} from '../material/material.module';
 import {AvatarModule} from 'ngx-avatar';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { FollowBtnComponent } from './components/follow-btn/follow-btn.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 
 const NG_MODULES = [
   CommonModule,
@@ -18,7 +19,7 @@ const LIBS_MODULES = [
 ];
 
 @NgModule({
-  declarations: [UserCardComponent, FollowBtnComponent],
+  declarations: [UserCardComponent, FollowBtnComponent, PostCardComponent],
   imports: [
     ...NG_MODULES,
     ...LIBS_MODULES,
@@ -28,7 +29,8 @@ const LIBS_MODULES = [
     ...NG_MODULES,
     ...LIBS_MODULES,
     MaterialModule,
-    UserCardComponent
+    UserCardComponent,
+    PostCardComponent
   ]
 })
 export class SharedModule {

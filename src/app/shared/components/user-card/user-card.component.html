@@ -1,12 +1,13 @@
-<mat-list-item>
+<div fxLayout="row" style="padding-top: 2em">
   <div>
     <ngx-avatar [src]="user.avatar.thumb.url"></ngx-avatar>
   </div>
-  <div [ngStyle]="{padding: '2em'}">
-    <h3>{{user.name}}</h3>
+  <div [ngStyle]="{paddingLeft: '1em'}">
+    <p class="font-large">{{user.name}}</p>
     <span class="muted-text">@{{user.user_name}}</span>
   </div>
-  <div>
+  <span fxFlex></span>
+  <div style="padding-left: 2em">
     <app-follow-btn [title]="title"></app-follow-btn>
   </div>
-</mat-list-item>
+</div>

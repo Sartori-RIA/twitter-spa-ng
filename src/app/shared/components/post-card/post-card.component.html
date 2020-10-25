@@ -1,0 +1,18 @@
+<mat-card [ngStyle]="{margin: '2em'}" class="mat-elevation-z8">
+  <div fxLayout="row" [ngStyle]="{padding: '2em'}">
+    <ngx-avatar [src]="post.user.avatar.thumb.url" size="50"></ngx-avatar>
+    <div [ngStyle]="{paddingLeft: '2em'}">
+      <h2>{{post.user.name}}</h2>
+      <span>@{{post.user.user_name}} - {{post.updated_at | date: 'mediumDate'}}</span>
+    </div>
+    <span fxFlex></span>
+    <button mat-icon-button><mat-icon>create</mat-icon></button>
+    <button mat-icon-button><mat-icon>delete</mat-icon></button>
+  </div>
+
+  {{post.content}}
+
+  <div *ngIf="post.picture">
+    <img [src]="post.picture.thumb.url" alt="">
+  </div>
+</mat-card>
