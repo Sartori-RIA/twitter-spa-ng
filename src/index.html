@@ -8,8 +8,24 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="vendor/lottie/lottie.min.js"></script>
 </head>
 <body class="mat-typography">
-  <app-root></app-root>
+<app-root>
+  <div id="loading" style="height: 100vh"></div>
+</app-root>
+
+  <script>
+    const animParams = {
+      wrapper: document.getElementById('loading'),
+      renderer: 'svg',
+      loop: true,
+      prerender: true,
+      autoplay: true,
+      path: 'assets/animations/loading.json'
+    };
+    const anim = lottie.loadAnimation(animParams);
+    window.onresize = anim.resize.bind(anim);
+  </script>
 </body>
 </html>
