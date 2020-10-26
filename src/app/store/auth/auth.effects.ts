@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {SIGN_IN, SIGN_IN_DONE, SIGN_IN_REFUSED, SIGN_OUT} from './auth.actions';
+import {SIGN_IN, SIGN_IN_DONE, SIGN_IN_REFUSED, SIGN_OUT, SIGN_UP, SIGN_UP_DONE, SIGN_UP_FAIL} from './auth.actions';
 import {catchError, map, mergeMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
@@ -15,6 +15,16 @@ export class AuthEffects {
       .pipe(
         map((user) => SIGN_IN_DONE({user})),
         catchError((err) => of(SIGN_IN_REFUSED({errors: err.error})))
+      )
+    ),
+  ));
+
+  signUp$ = createEffect(() => this.actions$.pipe(
+    ofType(SIGN_UP),
+    mergeMap((action) => this.authService.onSignUp(action.user)
+      .pipe(
+        map((user) => SIGN_UP_DONE({user})),
+        catchError((err) => of(SIGN_UP_FAIL({errors: err.error})))
       )
     ),
   ));

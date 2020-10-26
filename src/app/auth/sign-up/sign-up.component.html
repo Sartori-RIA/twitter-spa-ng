@@ -1,1 +1,36 @@
-<p>sign-up works!</p>
+<div [formGroup]="form">
+  <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+    <h1>Seja bem vindo!</h1>
+    <h3>Agora vamos criar uma conta pra ti ;)</h3>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome de usuário</mat-label>
+      <input matInput formControlName="user_name">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input type="password" matInput formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmar senha</mat-label>
+      <input type="password" matInput formControlName="confirm_password">
+    </mat-form-field>
+
+    <button (click)="onSubmit()" mat-raised-button color="accent" matTooltip="Entrar">
+      <mat-icon>login</mat-icon>&nbsp;Criar a minha conta
+    </button>
+  </div>
+</div>

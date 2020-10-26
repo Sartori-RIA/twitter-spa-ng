@@ -24,6 +24,15 @@ export class AuthService {
     }));
   }
 
+  onSignUp(data: User): Observable<User> {
+    return this.http.post<User>(`${this.url}sign_up`, data, {observe: 'response'}).pipe(map((response) => {
+      const token = response.headers.get('Authorization');
+      LocalStorage.setJwt(token);
+      LocalStorage.setUser(response.body);
+      return response.body;
+    }));
+  }
+
   sendCodeToEmail(email: string): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.url}password`, {email}, {observe: 'response'});
   }

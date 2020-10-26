@@ -1,6 +1,6 @@
 import {User} from '../../core/models/user';
 import {Action, createReducer, on} from '@ngrx/store';
-import {ALREADY_LOGGED_IN, SIGN_IN, SIGN_IN_DONE, SIGN_IN_REFUSED, SIGN_OUT} from './auth.actions';
+import {ALREADY_LOGGED_IN, SIGN_IN, SIGN_IN_DONE, SIGN_IN_REFUSED, SIGN_OUT, SIGN_UP, SIGN_UP_DONE, SIGN_UP_FAIL} from './auth.actions';
 import {LocalStorage} from '../../utils/storage';
 
 export const featureKey = 'auth';
@@ -20,8 +20,8 @@ const initialState: AuthState = {
 };
 
 const authReducer = createReducer(initialState,
-  on(SIGN_IN, (state) => ({...state, loading: true})),
-  on(SIGN_IN_DONE, (state, {user}) => ({
+  on(SIGN_IN, SIGN_UP, (state) => ({...state, loading: true})),
+  on(SIGN_IN_DONE, SIGN_UP_DONE, (state, {user}) => ({
     ...state,
     user,
     errors: undefined,
@@ -34,7 +34,7 @@ const authReducer = createReducer(initialState,
     loading: false,
     user: LocalStorage.user()
   })),
-  on(SIGN_IN_REFUSED, (state, {errors}) => ({
+  on(SIGN_IN_REFUSED, SIGN_UP_FAIL, (state, {errors}) => ({
     ...state,
     errors: errors.error,
     loading: false

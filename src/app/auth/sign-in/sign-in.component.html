@@ -13,12 +13,13 @@
     </mat-form-field>
 
     <button (click)="onSubmit()" mat-raised-button color="accent" matTooltip="Entrar">
-      <mat-icon>login</mat-icon>
+      <mat-icon>login</mat-icon>&nbsp;Entrar
     </button>
 
-    <div [ngStyle]="{paddingTop: '2em'}" fxLayoutAlign="center">
-      <button routerLink="/auth/recuperar" mat-button>Esqueci minha senha</button>
-    </div>
+    <button [ngStyle]="{marginTop: '2em'}" routerLink="/auth/registrar" mat-raised-button color="primary">Ainda não tem conta?</button>
+    <button [ngStyle]="{marginTop: '2em'}" routerLink="/auth/recuperar" mat-button color="primary">Esqueci minha
+      senha
+    </button>
   </div>
 
 </div>
