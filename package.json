@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run twitt  er-spa-ng:serve-ssr",
+    "dev:ssr": "ng run twitter-spa-ng:serve-ssr",
     "serve:ssr": "node dist/twitter-spa-ng/server/main.js",
     "build:ssr": "ng build --prod && ng run twitter-spa-ng:server:production",
     "prerender": "ng run twitter-spa-ng:prerender",
