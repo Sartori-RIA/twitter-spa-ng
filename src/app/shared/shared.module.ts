@@ -10,6 +10,7 @@ import {PostCardComponent} from './components/post-card/post-card.component';
 import {CodeInputModule} from 'angular-code-input';
 import {WriteFabComponent} from './components/buttons/write-fab/write-fab.component';
 import {AddPostComponent} from './components/dialogs/add-post/add-post.component';
+import { EditProfileComponent } from './components/dialogs/edit-profile/edit-profile.component';
 
 const NG_MODULES = [
   CommonModule,
@@ -32,7 +33,8 @@ const COMPONENTS = [
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    AddPostComponent
+    AddPostComponent,
+    EditProfileComponent
   ],
   imports: [
     ...NG_MODULES,

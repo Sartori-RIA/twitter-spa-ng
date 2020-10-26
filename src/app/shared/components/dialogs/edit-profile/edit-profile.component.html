@@ -1,0 +1,29 @@
+<div mat-dialog-title fxLayoutAlign="center">
+  Olá {{(user$ | async)?.name}}
+</div>
+
+<div mat-dialog-content>
+  <div [formGroup]="form" fxFill fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field appearance="outline" fxFill>
+      <mat-label>Nome</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFill>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFill>
+      <mat-label>Senha</mat-label>
+      <input formControlName="password" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFill>
+      <mat-label>Confirmar senha</mat-label>
+      <input formControlName="confirm_password" matInput>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <span fxFlex></span>
+  <button (click)="onSubmit()" mat-stroked-button color="primary" class="rounded">Atualizar</button>
+</div>

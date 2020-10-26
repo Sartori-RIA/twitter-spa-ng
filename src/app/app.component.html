@@ -16,7 +16,7 @@
                   [matMenuTriggerFor]="menu"
                   [src]="user?.avatar?.url"></ngx-avatar>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item><mat-icon>settings</mat-icon>&nbsp;Editar Perfil</button>
+        <button (click)="editProfile()" mat-menu-item><mat-icon>settings</mat-icon>&nbsp;Editar Perfil</button>
         <button (click)="logout()" mat-menu-item><mat-icon>exit_to_app</mat-icon>&nbsp;Sair</button>
       </mat-menu>
     </div>
