@@ -23,6 +23,7 @@ export class AddPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateForm();
   }
 
   onSubmit(): void {
@@ -30,5 +31,11 @@ export class AddPostComponent implements OnInit {
 
     }
     this.form.markAllAsTouched();
+  }
+
+  private updateForm(): void {
+    this.form.patchValue({
+      content: this.data.content
+    });
   }
 }
