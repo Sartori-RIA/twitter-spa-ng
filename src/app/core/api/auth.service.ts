@@ -61,4 +61,13 @@ export class AuthService {
       return of(e);
     }));
   }
+
+  confirmAccount(token: string): Observable<User> {
+    const url = `${environment.auth_url}confirmations?confirmation_token=${token}`;
+    return this.http.get<User>(url);
+  }
+
+  resendConfirmationEmail(email: string): Observable<any> {
+    return this.http.post(environment.auth_url + 'confirmations', {email});
+  }
 }

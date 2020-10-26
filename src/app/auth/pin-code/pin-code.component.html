@@ -1,5 +1,13 @@
-<code-input [isCodeHidden]="false"
-            [isNonDigitsCode]="true"
-            [codeLength]="6"
-            (codeCompleted)="onCodeCompleted($event)">
-</code-input>
+<mat-card-header>
+  <mat-card-title fxFlex fxLayout="column" fxLayoutAlign="center center">
+    <h2>Digite o codigo recebido por email</h2>
+  </mat-card-title>
+</mat-card-header>
+
+<div>
+  <code-input [isCodeHidden]="false"
+              [isNonDigitsCode]="true"
+              [codeLength]="6"
+              (codeCompleted)="onCodeCompleted($event)">
+  </code-input>
+</div>

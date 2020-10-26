@@ -1,6 +1,11 @@
+<mat-card-header>
+  <mat-card-title fxFlex fxLayout="column" fxLayoutAlign="center">
+    <h2>Entrar na plataforma</h2>
+  </mat-card-title>
+</mat-card-header>
+
 <div [formGroup]="form">
   <div fxFlex fxLayout="column" fxLayoutAlign="center">
-    <h1>Entrar na plataforma</h1>
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
@@ -16,7 +21,9 @@
       <mat-icon>login</mat-icon>&nbsp;Entrar
     </button>
 
-    <button [ngStyle]="{marginTop: '2em'}" routerLink="/auth/registrar" mat-raised-button color="primary">Ainda não tem conta?</button>
+    <button [ngStyle]="{marginTop: '2em'}" routerLink="/auth/registrar" mat-raised-button color="primary">Ainda não tem
+      conta?
+    </button>
     <button [ngStyle]="{marginTop: '2em'}" routerLink="/auth/recuperar" mat-button color="primary">Esqueci minha
       senha
     </button>
