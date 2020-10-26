@@ -11,6 +11,7 @@ import {CodeInputModule} from 'angular-code-input';
 import {WriteFabComponent} from './components/buttons/write-fab/write-fab.component';
 import {AddPostComponent} from './components/dialogs/add-post/add-post.component';
 import {EditProfileComponent} from './components/dialogs/edit-profile/edit-profile.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 const NG_MODULES = [
   CommonModule,
@@ -21,7 +22,8 @@ const NG_MODULES = [
 
 const LIBS_MODULES = [
   AvatarModule,
-  CodeInputModule
+  CodeInputModule,
+  InfiniteScrollModule
 ];
 
 const COMPONENTS = [

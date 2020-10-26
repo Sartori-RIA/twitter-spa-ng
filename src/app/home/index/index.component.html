@@ -1,5 +1,10 @@
 <div fxLayout="column" fxLayoutAlign="center">
-  <app-post-card *ngFor="let post of postages$ | async"
+  <app-post-card *ngFor="let post of postages"
+                 infiniteScroll
+                 [infiniteScrollDistance]="2"
+                 [infiniteScrollThrottle]="100"
+                 [fromRoot]="true"
+                 (scrolled)="onScroll()"
                  [post]="post"
   ></app-post-card>
 </div>
