@@ -11,7 +11,9 @@
     "dev:ssr": "ng run twitt  er-spa-ng:serve-ssr",
     "serve:ssr": "node dist/twitter-spa-ng/server/main.js",
     "build:ssr": "ng build --prod && ng run twitter-spa-ng:server:production",
-    "prerender": "ng run twitter-spa-ng:prerender"
+    "prerender": "ng run twitter-spa-ng:prerender",
+    "start:heroku":"node dist/twitter-spa-ng/server",
+    "postinstall":"npm run build:ssr"
   },
   "private": true,
   "dependencies": {
