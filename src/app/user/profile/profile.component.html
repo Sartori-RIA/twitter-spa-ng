@@ -9,15 +9,22 @@
    }">
   </div>
   <div class="avatar-position">
-    <ngx-avatar class="my-avatar"
-                size="200"
-                (clickOnAvatar)="openAvatarFull(user)"
-                [src]="user.avatar.thumb.url">
-    </ngx-avatar>
-    <h2>{{user.name}}</h2>
-    <span class="muted-text">@{{user.user_name}}</span>
-
-    <nav mat-tab-nav-bar mat-align-tabs="center" >
+    <div fxLayoutAlign="space-between end">
+      <div>
+        <ngx-avatar class="my-avatar"
+                    size="200"
+                    (clickOnAvatar)="openAvatarFull(user)"
+                    [src]="user.avatar.thumb.url">
+        </ngx-avatar>
+        <h2>{{user.name}}</h2>
+        <span class="muted-text">@{{user.user_name}}</span>
+      </div>
+      <div *ngIf="user$ | async; let profile">
+        <app-follow-btn *ngIf="profile.id != user.id" (followClick)="onFollowClick(user)"
+                        [title]="alreadyFollow ? 'DEIXAR DE SEGUIR' : 'SEGUIR'"></app-follow-btn>
+      </div>
+    </div>
+    <nav mat-tab-nav-bar mat-align-tabs="center">
       <a mat-tab-link routerLink="postagens">Postagens {{postagesCount$ | async}}</a>
       <a mat-tab-link routerLink="seguidores">Seguidores {{followersCount$ | async}}</a>
       <a mat-tab-link routerLink="seguindo">Seguindo {{followsCount$ | async}}</a>

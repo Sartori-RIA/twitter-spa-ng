@@ -8,6 +8,7 @@ import {take} from 'rxjs/operators';
 import {CookieCodeValidators} from '../../../../utils/cookie-code.validators';
 import {UsersService} from '../../../../core/api/users.service';
 import {User} from '../../../../core/models/user';
+import {UPDATE_USER} from '../../../../store/user/user.actions';
 
 @Component({
   selector: 'app-edit-profile',
@@ -38,7 +39,7 @@ export class EditProfileComponent implements OnInit {
     }
     this.form.controls.password.updateValueAndValidity();
     if (this.form.valid) {
-
+      this.store.dispatch(UPDATE_USER({user: {...this.form.value}}));
     }
     this.form.markAllAsTouched();
   }

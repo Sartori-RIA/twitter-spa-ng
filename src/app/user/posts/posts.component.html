@@ -1,4 +1,5 @@
 <app-post-card *ngFor="let post of posts$ | async"
+               (onRemove)="deletePost($event)"
                [post]="post"
 ></app-post-card>
 

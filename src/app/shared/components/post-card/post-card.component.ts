@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Postage} from '../../../core/models/postage';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../store';
@@ -16,6 +16,8 @@ import {Router} from '@angular/router';
 export class PostCardComponent implements OnInit {
 
   @Input() post: Postage;
+  @Output() onRemove = new EventEmitter<Postage>();
+
   user$ = this.store.pipe(select(selectCurrentUser));
 
   constructor(private store: Store<AppState>,
@@ -24,6 +26,11 @@ export class PostCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  destroyPostage(): void {
+    console.log('eaee');
+    this.onRemove.emit(this.post);
   }
 
   openEditDialog(): void {

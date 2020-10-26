@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api_url: 'http://localhost:3000/api',
-  auth_url: 'http://localhost:3000/auth'
+  api_url: 'https://sartori-twitter-api.herokuapp.com/api/',
+  auth_url: 'https://sartori-twitter-api.herokuapp.com/auth/'
 };

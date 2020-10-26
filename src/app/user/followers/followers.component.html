@@ -3,6 +3,8 @@
     <div *ngIf="(followers$ | async)?.length > 0; else emptyList">
       <app-user-card
         [user]="follower.user"
+        [shotBtn]="false"
+        (followUser)="onFollowClick($event)"
         title="SEGUIR"
       ></app-user-card>
     </div>

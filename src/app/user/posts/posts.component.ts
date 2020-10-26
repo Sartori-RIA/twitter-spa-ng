@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
@@ -13,9 +13,12 @@ import {Postage} from '../../core/models/postage';
 export class PostsComponent implements OnInit, OnDestroy {
 
   posts$: Observable<Postage[]>;
+  currentPage = 0;
+  total = 0;
   private subscription: Subscription;
 
   constructor(private postagesService: PostagesService,
+              private cdRefs: ChangeDetectorRef,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -27,6 +30,13 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+  }
+
+  deletePost(post: Postage): void {
+    this.postagesService.destroy(post.user_id, post.id).subscribe(() => {
+      this.posts$ = this.postagesService.userPostages(post.user_id).pipe(map((res) => res.body));
+      this.cdRefs.detectChanges();
+    });
   }
 
 }

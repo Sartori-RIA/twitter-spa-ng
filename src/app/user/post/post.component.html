@@ -1,1 +1,1 @@
-<app-post-card [post]="post$ | async"></app-post-card>
+<app-post-card (onRemove)="deletePost($event)" [post]="post$ | async"></app-post-card>

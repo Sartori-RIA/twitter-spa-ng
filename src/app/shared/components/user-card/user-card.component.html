@@ -8,7 +8,7 @@
   </div>
   <span fxFlex></span>
   <div style="padding-left: 2em">
-    <app-follow-btn [title]="title"></app-follow-btn>
+    <app-follow-btn *ngIf="shotBtn" (followClick)="onFollowClick()" [title]="title"></app-follow-btn>
   </div>
   <mat-divider></mat-divider>
 </div>

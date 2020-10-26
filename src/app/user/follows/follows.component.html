@@ -1,9 +1,14 @@
 <div [ngStyle]="{padding: '4em'}">
-  <div *ngFor="let follower of follows$ | async">
-
-    <app-user-card
-      [user]="follower.user"
-      title="SEGUIR"
-    ></app-user-card>
+  <div *ngFor="let follow of follows$ | async">
+    <div *ngIf="(follows$ | async)?.length > 0; else emptyList">
+      <app-user-card
+        [user]="follow.follow"
+        (followUser)="onFollowClick(follow)"
+        title="DEIXAR DE SEGUIR"
+      ></app-user-card>
+    </div>
+    <ng-template #emptyList>
+      <p>Você ainda não segue ninguém</p>
+    </ng-template>
   </div>
 </div>

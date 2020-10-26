@@ -22,6 +22,10 @@ export class FollowService {
     return this.http.get<Counter>(`${this.url}/${id}/followers/count`);
   }
 
+  alreadyFollow(userId: number, followId: number): Observable<HttpResponse<Follow>> {
+    return this.http.get<Follow>(`${this.url}/${userId}/follows/check?follow_id=${followId}`, {observe: 'response'});
+  }
+
   follows(id: number | string): Observable<HttpResponse<Follow[]>> {
     return this.http.get<Follow[]>(`${this.url}/${id}/follows`, {observe: 'response'});
   }
@@ -34,7 +38,7 @@ export class FollowService {
     return this.http.post<Follow>(`${this.url}/${id}/follows`, {follow_id: userId});
   }
 
-  stopToFollow(id: number, followId: number): Observable<Follow> {
+  stopToFollow(id: number, followId: number): Observable<any> {
     return this.http.delete<Follow>(`${this.url}/${id}/follows/${followId}`);
   }
 }

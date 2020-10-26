@@ -2,8 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {Follow} from '../../core/models/follow';
-import {map} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {FollowService} from '../../core/api/follow.service';
+import {User} from '../../core/models/user';
+import {select, Store} from '@ngrx/store';
+import {AppState} from '../../store';
+import {selectCurrentUser} from '../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-followers',
@@ -13,9 +17,11 @@ import {FollowService} from '../../core/api/follow.service';
 export class FollowersComponent implements OnInit, OnDestroy {
 
   followers$: Observable<Follow[]>;
+  user$ = this.store.pipe(select(selectCurrentUser));
   private subscription: Subscription;
 
   constructor(private followService: FollowService,
+              private store: Store<AppState>,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -29,4 +35,9 @@ export class FollowersComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
+  onFollowClick(profile: User): void {
+    this.user$.pipe(take(1)).subscribe((user) => {
+      this.followService.startToFollow(user.id, profile.id).subscribe();
+    });
+  }
 }
