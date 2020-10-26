@@ -4,6 +4,8 @@ import {PasswordValidators} from 'ngx-validators';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store';
 import {SIGN_UP} from '../../store/auth/auth.actions';
+import {CookieCodeValidators} from '../../utils/cookie-code.validators';
+import {UsersService} from '../../core/api/users.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,15 +14,10 @@ import {SIGN_UP} from '../../store/auth/auth.actions';
 })
 export class SignUpComponent implements OnInit {
 
-  form: FormGroup = this.fb.group({
-    email: [null, [Validators.required, Validators.email]],
-    user_name: [null, [Validators.required]],
-    name: [null, [Validators.required]],
-    password: [null, [Validators.required, Validators.minLength(8)]],
-    confirm_password: [],
-  }, PasswordValidators.mismatchedPasswords('password', 'confirm_password'));
+  form: FormGroup = this.mountForm();
 
   constructor(private fb: FormBuilder,
+              private userService: UsersService,
               private store: Store<AppState>) {
   }
 
@@ -40,5 +37,15 @@ export class SignUpComponent implements OnInit {
       }));
     }
     this.form.markAllAsTouched();
+  }
+
+  private mountForm(): FormGroup {
+    return this.fb.group({
+      email: [null, [Validators.required, Validators.email], [CookieCodeValidators.uniqueEmail(this.userService)]],
+      user_name: [null, [Validators.required], [CookieCodeValidators.uniqueUsername(this.userService)]],
+      name: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirm_password: [],
+    }, PasswordValidators.mismatchedPasswords('password', 'confirm_password'));
   }
 }

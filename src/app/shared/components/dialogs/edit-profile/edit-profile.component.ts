@@ -5,6 +5,9 @@ import {selectCurrentUser} from '../../../../store/auth/auth.selectors';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PasswordValidators} from 'ngx-validators';
 import {take} from 'rxjs/operators';
+import {CookieCodeValidators} from '../../../../utils/cookie-code.validators';
+import {UsersService} from '../../../../core/api/users.service';
+import {User} from '../../../../core/models/user';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,19 +17,18 @@ import {take} from 'rxjs/operators';
 export class EditProfileComponent implements OnInit {
 
   user$ = this.store.pipe(select(selectCurrentUser));
-  form: FormGroup = this.fb.group({
-    email: [null, [Validators.required, Validators.email]],
-    name: [null, Validators.required],
-    password: [null, Validators.required, Validators.minLength(8)],
-    confirm_password: []
-  }, PasswordValidators.mismatchedPasswords('password', 'confirm_password'));
+  form: FormGroup;
 
   constructor(private store: Store<AppState>,
+              private userService: UsersService,
               private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.updateForm();
+    this.user$.pipe(take(1)).subscribe((user) => {
+      this.createForm(user);
+      this.updateForm(user);
+    });
   }
 
   onSubmit(): void {
@@ -41,12 +43,19 @@ export class EditProfileComponent implements OnInit {
     this.form.markAllAsTouched();
   }
 
-  private updateForm() {
-    this.user$.pipe(take(1)).subscribe((user) =>
-      this.form.patchValue({
-        email: user.email,
-        name: user.name
-      })
-    );
+  private updateForm(user: User): void {
+    this.form.patchValue({
+      email: user.email,
+      name: user.name
+    });
+  }
+
+  private createForm(user: User): void {
+    this.form = this.fb.group({
+      email: [null, [Validators.required, Validators.email], [CookieCodeValidators.uniqueEmail(this.userService, user.email)]],
+      name: [null, Validators.required, [CookieCodeValidators.uniqueUsername(this.userService, user.user_name)]],
+      password: [null, Validators.required, Validators.minLength(8)],
+      confirm_password: []
+    }, PasswordValidators.mismatchedPasswords('password', 'confirm_password'));
   }
 }
