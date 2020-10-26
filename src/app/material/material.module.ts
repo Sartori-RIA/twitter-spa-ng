@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const MAT_MODULES = [
@@ -23,6 +24,7 @@ const MAT_MODULES = [
   MatMenuModule,
   MatTabsModule,
   MatListModule,
+  MatDialogModule,
 ];
 
 @NgModule({

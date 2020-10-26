@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FollowTitles} from '../../../core/models/follow';
+import {FollowTitles} from '../../../../core/models/follow';
 
 @Component({
   selector: 'app-follow-btn',

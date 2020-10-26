@@ -1,3 +1,5 @@
-<app-post-card *ngFor="let post of postages$ | async"
-               [post]="post"
-></app-post-card>
+<div fxLayout="column" fxLayoutAlign="center">
+  <app-post-card *ngFor="let post of postages$ | async"
+                 [post]="post"
+  ></app-post-card>
+</div>

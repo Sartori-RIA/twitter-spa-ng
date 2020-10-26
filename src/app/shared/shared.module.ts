@@ -5,9 +5,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material/material.module';
 import {AvatarModule} from 'ngx-avatar';
 import {UserCardComponent} from './components/user-card/user-card.component';
-import {FollowBtnComponent} from './components/follow-btn/follow-btn.component';
+import {FollowBtnComponent} from './components/buttons/follow-btn/follow-btn.component';
 import {PostCardComponent} from './components/post-card/post-card.component';
 import {CodeInputModule} from 'angular-code-input';
+import {WriteFabComponent} from './components/buttons/write-fab/write-fab.component';
+import {AddPostComponent} from './components/dialogs/add-post/add-post.component';
 
 const NG_MODULES = [
   CommonModule,
@@ -20,8 +22,18 @@ const LIBS_MODULES = [
   CodeInputModule
 ];
 
+const COMPONENTS = [
+  UserCardComponent,
+  FollowBtnComponent,
+  PostCardComponent,
+  WriteFabComponent
+];
+
 @NgModule({
-  declarations: [UserCardComponent, FollowBtnComponent, PostCardComponent],
+  declarations: [
+    ...COMPONENTS,
+    AddPostComponent
+  ],
   imports: [
     ...NG_MODULES,
     ...LIBS_MODULES,
@@ -30,9 +42,8 @@ const LIBS_MODULES = [
   exports: [
     ...NG_MODULES,
     ...LIBS_MODULES,
+    ...COMPONENTS,
     MaterialModule,
-    UserCardComponent,
-    PostCardComponent
   ]
 })
 export class SharedModule {

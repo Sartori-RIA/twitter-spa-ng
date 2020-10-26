@@ -23,4 +23,6 @@
   </ng-template>
 </mat-toolbar>
 
+<app-write-fab *ngIf="loggedIn$ | async"></app-write-fab>
+
 <router-outlet></router-outlet>
