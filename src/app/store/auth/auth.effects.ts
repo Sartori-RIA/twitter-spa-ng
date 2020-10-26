@@ -23,7 +23,7 @@ export class AuthEffects {
     ofType(SIGN_OUT),
     mergeMap(() => this.authService.onSignOut()),
     tap(() => {
-      this.router.navigate(['/auth/entrar'], {replaceUrl: true});
+      this.router.navigate(['/'], {replaceUrl: true});
     })
   ), {dispatch: false});
 

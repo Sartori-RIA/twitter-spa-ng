@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from './store';
 import {selectIsLoggedIn} from './store/auth/auth.selectors';
 import {selectUser} from './store/user/user.selectors';
-import {User} from './core/models/user';
+import {SIGN_OUT} from './store/auth/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -16,5 +16,9 @@ export class AppComponent {
   user$ = this.store.pipe(select(selectUser));
 
   constructor(private store: Store<AppState>) {
+  }
+
+  logout(): void {
+    this.store.dispatch(SIGN_OUT());
   }
 }

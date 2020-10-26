@@ -13,7 +13,12 @@
                   [size]="40"
                   routerLink="/usuarios/{{user.id}}"
                   [name]="user?.user_name"
+                  [matMenuTriggerFor]="menu"
                   [src]="user?.avatar?.url"></ngx-avatar>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item><mat-icon>settings</mat-icon>&nbsp;Editar Perfil</button>
+        <button (click)="logout()" mat-menu-item><mat-icon>exit_to_app</mat-icon>&nbsp;Sair</button>
+      </mat-menu>
     </div>
   </div>
   <ng-template #withoutSession>
