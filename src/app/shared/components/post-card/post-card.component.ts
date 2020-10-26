@@ -5,6 +5,8 @@ import {AppState} from '../../../store';
 import {selectCurrentUser} from '../../../store/auth/auth.selectors';
 import {MatDialog} from '@angular/material/dialog';
 import {AddPostComponent} from '../dialogs/add-post/add-post.component';
+import {User} from '../../../core/models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -17,6 +19,7 @@ export class PostCardComponent implements OnInit {
   user$ = this.store.pipe(select(selectCurrentUser));
 
   constructor(private store: Store<AppState>,
+              private router: Router,
               private dialog: MatDialog) {
   }
 
@@ -28,5 +31,13 @@ export class PostCardComponent implements OnInit {
       data: this.post,
       minWidth: '50vh'
     });
+  }
+
+  openUser(user: User): void {
+    this.router.navigate(['/usuarios/', user.id, 'postagens']);
+  }
+
+  openPostage(post: Postage): void {
+    this.router.navigate(['/usuarios/', post.user_id, 'postagens', post.id]);
   }
 }

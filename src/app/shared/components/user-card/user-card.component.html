@@ -1,8 +1,8 @@
 <div fxLayout="row" style="padding-top: 2em">
-  <div>
+  <div (click)="openProfile()">
     <ngx-avatar [src]="user.avatar.thumb.url"></ngx-avatar>
   </div>
-  <div [ngStyle]="{paddingLeft: '1em'}">
+  <div (click)="openProfile()" [ngStyle]="{paddingLeft: '1em'}">
     <p class="font-large">{{user.name}}</p>
     <span class="muted-text">@{{user.user_name}}</span>
   </div>

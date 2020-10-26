@@ -37,6 +37,7 @@ const COMPONENTS = [
     EditProfileComponent
   ],
   imports: [
+    CommonModule,
     ...NG_MODULES,
     ...LIBS_MODULES,
     MaterialModule

@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {Postage} from '../models/postage';
 import {map} from 'rxjs/operators';
+import {Counter} from '../models/base-model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class PostagesService {
 
   userPostages(userId: number, params?: { [key: string]: string | string[] }): Observable<HttpResponse<Postage[]>> {
     return this.http.get<Postage[]>(`${this.url}/${userId}/postages`, {params, observe: 'response'}).pipe();
+  }
+
+  userPostagesCount(userId: number): Observable<Counter> {
+    return this.http.get<Counter>(`${this.url}/${userId}/postages/count`).pipe();
   }
 
   show(userId: number, id: number): Observable<Postage> {

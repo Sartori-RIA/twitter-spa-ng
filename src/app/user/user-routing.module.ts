@@ -5,6 +5,8 @@ import {UserResolver} from '../core/resolvers/user.resolver';
 import {FollowersComponent} from './followers/followers.component';
 import {FollowsComponent} from './follows/follows.component';
 import {PostsComponent} from './posts/posts.component';
+import {PostComponent} from './post/post.component';
+import {PostResolver} from '../core/resolvers/post.resolver';
 
 const routes: Routes = [
   {
@@ -13,7 +15,12 @@ const routes: Routes = [
     }, children: [
       {path: 'seguidores', component: FollowersComponent},
       {path: 'seguindo', component: FollowsComponent},
-      {path: 'postagens', component: PostsComponent}
+      {path: 'postagens', component: PostsComponent},
+      {
+        path: 'postagens/:id', component: PostComponent, resolve: {
+          post: PostResolver
+        }
+      }
     ]
   }
 ];

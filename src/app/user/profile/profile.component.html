@@ -18,9 +18,9 @@
     <span class="muted-text">@{{user.user_name}}</span>
 
     <nav mat-tab-nav-bar mat-align-tabs="center" >
-      <a mat-tab-link routerLink="postagens">Postagens</a>
-      <a mat-tab-link routerLink="seguidores">Seguidores</a>
-      <a mat-tab-link routerLink="seguindo">Seguindo</a>
+      <a mat-tab-link routerLink="postagens">Postagens {{postagesCount$ | async}}</a>
+      <a mat-tab-link routerLink="seguidores">Seguidores {{followersCount$ | async}}</a>
+      <a mat-tab-link routerLink="seguindo">Seguindo {{followsCount$ | async}}</a>
     </nav>
 
     <div fxLayoutAlign="center">

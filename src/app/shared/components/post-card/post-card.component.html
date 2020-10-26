@@ -1,9 +1,9 @@
 <mat-card [ngStyle]="{margin: '2em'}" class="mat-elevation-z8">
   <div fxLayout="row" [ngStyle]="{padding: '2em'}">
-    <ngx-avatar [src]="post.user.avatar.thumb.url" size="50"></ngx-avatar>
+    <ngx-avatar (clickOnAvatar)="openUser(post.user)" [src]="post.user.avatar.thumb.url" size="50"></ngx-avatar>
     <div [ngStyle]="{paddingLeft: '2em'}">
-      <h2>{{post.user.name}}</h2>
-      <span>@{{post.user.user_name}} - {{post.updated_at | date: 'mediumDate'}}</span>
+      <h2 (click)="openUser(post.user)">{{post.user.name}}</h2>
+      <span (click)="openPostage(post)">@{{post.user.user_name}} - {{post.updated_at | date: 'mediumDate'}}</span>
     </div>
     <span fxFlex></span>
     <button (click)="openEditDialog()" *ngIf="(user$ | async)?.id == post.user_id" mat-icon-button><mat-icon>create</mat-icon></button>
