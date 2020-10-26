@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material/material.module';
 import {AvatarModule} from 'ngx-avatar';
 import {UserCardComponent} from './components/user-card/user-card.component';
@@ -10,11 +10,12 @@ import {PostCardComponent} from './components/post-card/post-card.component';
 import {CodeInputModule} from 'angular-code-input';
 import {WriteFabComponent} from './components/buttons/write-fab/write-fab.component';
 import {AddPostComponent} from './components/dialogs/add-post/add-post.component';
-import { EditProfileComponent } from './components/dialogs/edit-profile/edit-profile.component';
+import {EditProfileComponent} from './components/dialogs/edit-profile/edit-profile.component';
 
 const NG_MODULES = [
   CommonModule,
   FlexLayoutModule,
+  FormsModule,
   ReactiveFormsModule,
 ];
 
