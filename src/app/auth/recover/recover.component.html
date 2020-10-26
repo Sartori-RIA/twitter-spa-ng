@@ -1,9 +1,10 @@
 <div fxFlex fxLayout="column" fxLayoutAlign="center">
-  <h1>Entrar na plataforma</h1>
+  <h1>Informe o email para recuperação</h1>
 
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <input matInput [formControl]="emailField">
+    <mat-error *ngIf="emailNotFound">Email não encontrado</mat-error>
   </mat-form-field>
 
   <button (click)="onSubmit()" mat-raised-button color="accent" matTooltip="Entrar">

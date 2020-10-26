@@ -13,7 +13,7 @@ export class SignInComponent {
 
   form: FormGroup = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, Validators.min(8)]],
+    password: [null, [Validators.required, Validators.minLength(8)]],
   });
 
   constructor(private fb: FormBuilder,

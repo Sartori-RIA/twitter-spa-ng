@@ -29,8 +29,10 @@
     "@ngrx/schematics": "^10.0.1",
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.0.1",
+    "angular-code-input": "^1.2.2",
     "moment": "^2.29.1",
     "ngx-avatar": "^4.0.0",
+    "ngx-validators": "^5.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

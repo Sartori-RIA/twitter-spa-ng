@@ -1,1 +1,5 @@
-<p>pin-code works!</p>
+<code-input [isCodeHidden]="false"
+            [isNonDigitsCode]="true"
+            [codeLength]="6"
+            (codeCompleted)="onCodeCompleted($event)">
+</code-input>

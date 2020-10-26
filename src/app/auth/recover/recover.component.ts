@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../../core/api/auth.service';
 import {take} from 'rxjs/operators';
@@ -18,6 +18,7 @@ export class RecoverComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
+              private cdRefs: ChangeDetectorRef,
               private authService: AuthService) {
   }
 
@@ -30,7 +31,10 @@ export class RecoverComponent implements OnInit {
         .pipe(take(1))
         .subscribe(() => {
           this.router.navigateByUrl('/auth/codigo');
-        }, () => this.emailNotFound = true);
+        }, () => {
+          this.emailNotFound = true
+          this.cdRefs.detectChanges()
+        });
     }
     this.emailField.markAllAsTouched();
   }

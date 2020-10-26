@@ -4,9 +4,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material/material.module';
 import {AvatarModule} from 'ngx-avatar';
-import { UserCardComponent } from './components/user-card/user-card.component';
-import { FollowBtnComponent } from './components/follow-btn/follow-btn.component';
-import { PostCardComponent } from './components/post-card/post-card.component';
+import {UserCardComponent} from './components/user-card/user-card.component';
+import {FollowBtnComponent} from './components/follow-btn/follow-btn.component';
+import {PostCardComponent} from './components/post-card/post-card.component';
+import {CodeInputModule} from 'angular-code-input';
 
 const NG_MODULES = [
   CommonModule,
@@ -15,7 +16,8 @@ const NG_MODULES = [
 ];
 
 const LIBS_MODULES = [
-  AvatarModule
+  AvatarModule,
+  CodeInputModule
 ];
 
 @NgModule({

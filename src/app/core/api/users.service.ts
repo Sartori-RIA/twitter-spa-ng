@@ -4,6 +4,7 @@ import {User} from '../models/user';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
+import {LocalStorage} from '../../utils/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UsersService extends BaseService<User> {
   }
 
   me(): Observable<User> {
-    return super.show(1);
+    const user = LocalStorage.user();
+    return super.show(user.id);
   }
 }

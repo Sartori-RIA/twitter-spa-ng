@@ -29,14 +29,18 @@ export class AuthService {
   }
 
   submitPinCode(code: string): Observable<HttpResponse<any>> {
-    return this.http.post<any>(`${this.url}code`, {code}, {observe: 'response'});
+    return this.http.post<any>(`${this.url}code`, {reset_password_token: code}, {observe: 'response'});
   }
 
-  resetPassword(newPassword: string): Observable<HttpResponse<any>> {
+  resetPassword(newPassword: string, token: string): Observable<HttpResponse<User>> {
     return this.http.put<any>(
       `${this.url}reset_passwords`,
       {password: newPassword},
-      {observe: 'response'}
+      {
+        observe: 'response', headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     );
   }
 
