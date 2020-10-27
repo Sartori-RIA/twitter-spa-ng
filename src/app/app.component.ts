@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './store';
-import {selectIsLoggedIn} from './store/auth/auth.selectors';
-import {selectUser} from './store/user/user.selectors';
+import {selectCurrentUser, selectIsLoggedIn} from './store/auth/auth.selectors';
 import {SIGN_OUT} from './store/auth/auth.actions';
 import {MatDialog} from '@angular/material/dialog';
 import {EditProfileComponent} from './shared/components/dialogs/edit-profile/edit-profile.component';
@@ -15,7 +14,7 @@ import {EditProfileComponent} from './shared/components/dialogs/edit-profile/edi
 export class AppComponent {
   title = 'twitter-spa-ng';
   loggedIn$ = this.store.pipe(select(selectIsLoggedIn));
-  user$ = this.store.pipe(select(selectUser));
+  user$ = this.store.pipe(select(selectCurrentUser));
 
   constructor(private store: Store<AppState>,
               private dialog: MatDialog) {

@@ -1,5 +1,9 @@
-<app-post-card *ngFor="let post of posts$ | async"
-               (onRemove)="deletePost($event)"
+<app-post-card *ngFor="let post of postages"
+               infiniteScroll
+               [infiniteScrollDistance]="2"
+               [infiniteScrollThrottle]="100"
+               [fromRoot]="true"
+               (scrolled)="onScroll()"
                [post]="post"
 ></app-post-card>
-
+<app-loader *ngIf="loading"></app-loader>

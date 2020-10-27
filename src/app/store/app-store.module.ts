@@ -8,7 +8,6 @@ import {AppEffects} from './app.effects';
 import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {CustomSerializer} from './custom-router-serializer';
 import {AuthEffects} from './auth/auth.effects';
-import {UserEffects} from './user/user.effects';
 import {UploadFileEffects} from './upload-file/upload-file.effects';
 
 @NgModule({
@@ -27,7 +26,6 @@ import {UploadFileEffects} from './upload-file/upload-file.effects';
     EffectsModule.forRoot([
       AppEffects,
       AuthEffects,
-      UserEffects,
       UploadFileEffects
     ]),
     StoreRouterConnectingModule.forRoot({

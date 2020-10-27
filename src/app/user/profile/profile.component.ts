@@ -11,7 +11,7 @@ import {selectCurrentUser} from '../../store/auth/auth.selectors';
 import {Follow} from '../../core/models/follow';
 import {UploadFileComponent, UploadFileParams} from '../../upload-file/upload-file/upload-file.component';
 import {MatDialog} from '@angular/material/dialog';
-import {LOAD_USER} from '../../store/user/user.actions';
+import {LOAD_USER} from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-profile',
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   openAvatarFull(profile: User): void {
     this.user$.pipe(take(1)).subscribe((user) => {
-      if (user.id === profile.id) {
+      if (user.id !== profile.id) {
         return;
       }
       const params: UploadFileParams = {

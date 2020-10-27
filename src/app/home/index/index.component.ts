@@ -32,10 +32,10 @@ export class IndexComponent implements OnInit {
   }
 
   private makeRequest(page: string): void {
+    this.loading = true;
     this.postagesService.index({page})
       .pipe(take(1))
       .subscribe(({body, headers}) => {
-        console.log('tt');
         this.postages = [...this.postages, ...body];
         this.total = Number(headers.get('total'));
         this.loading = false;

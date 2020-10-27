@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
-import {ALREADY_LOGGED_IN, SIGN_OUT} from './auth/auth.actions';
+import {ALREADY_LOGGED_IN, LOAD_USER, SIGN_OUT} from './auth/auth.actions';
 import {Store} from '@ngrx/store';
 import {AppState} from './index';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import * as moment from 'moment';
 import {take, tap} from 'rxjs/operators';
-import {LOAD_USER} from './user/user.actions';
 import {LocalStorage} from '../utils/storage';
 
 @Injectable()

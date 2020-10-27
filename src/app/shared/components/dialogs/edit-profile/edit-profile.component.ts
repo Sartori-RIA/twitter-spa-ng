@@ -8,7 +8,7 @@ import {take} from 'rxjs/operators';
 import {CookieCodeValidators} from '../../../../utils/cookie-code.validators';
 import {UsersService} from '../../../../core/api/users.service';
 import {User} from '../../../../core/models/user';
-import {UPDATE_USER} from '../../../../store/user/user.actions';
+import {UPDATE_USER} from '../../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-edit-profile',

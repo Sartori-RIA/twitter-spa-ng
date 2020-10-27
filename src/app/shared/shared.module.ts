@@ -12,6 +12,8 @@ import {WriteFabComponent} from './components/buttons/write-fab/write-fab.compon
 import {AddPostComponent} from './components/dialogs/add-post/add-post.component';
 import {EditProfileComponent} from './components/dialogs/edit-profile/edit-profile.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {LottieModule} from 'ngx-lottie';
+import {LoaderComponent} from './components/loader/loader.component';
 
 const NG_MODULES = [
   CommonModule,
@@ -24,13 +26,15 @@ const LIBS_MODULES = [
   AvatarModule,
   CodeInputModule,
   InfiniteScrollModule,
+  LottieModule,
 ];
 
 const COMPONENTS = [
   UserCardComponent,
   FollowBtnComponent,
   PostCardComponent,
-  WriteFabComponent
+  WriteFabComponent,
+  LoaderComponent
 ];
 
 @NgModule({
