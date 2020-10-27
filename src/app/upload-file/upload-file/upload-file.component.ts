@@ -41,7 +41,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
 
   uploadFile(): void {
     const file = this.files[0];
-    this.store.dispatch(UPLOAD_REQUEST({file, entityId: this.data.entityId, type: this.data.type}));
+    this.store.dispatch(UPLOAD_REQUEST({file, entityId: this.data.entityId, fieldType: this.data.type}));
   }
 
   cancelUpload(): void {

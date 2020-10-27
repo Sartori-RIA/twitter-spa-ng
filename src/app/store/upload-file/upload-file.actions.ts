@@ -7,7 +7,7 @@ export const UPLOAD_REQUEST = createAction('[File Upload Form] Request', props<{
   entityId?: number,
   entityCouncil?: string,
   entityState?: string,
-  type?: UPLOAD_TYPE
+  fieldType?: UPLOAD_TYPE
 }>());
 
 export const UPLOAD_CANCEL = createAction('[File Upload Form] Cancel');

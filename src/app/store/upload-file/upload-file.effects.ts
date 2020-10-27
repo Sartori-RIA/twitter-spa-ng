@@ -15,9 +15,10 @@ import {LOAD_USER} from '../auth/auth.actions';
 export class UploadFileEffects {
   sendAvatar$ = createEffect(() => this.actions$.pipe(
     ofType(UPLOAD_REQUEST),
-    concatMap(({file, entityId, entityCouncil, entityState, type}) => {
+    concatMap(({file, entityId, entityCouncil, entityState, fieldType}) => {
       let observable: Observable<HttpEvent<User>>;
-      if (type === 'avatar') {
+      console.log(fieldType);
+      if (fieldType === 'avatar') {
         observable = this.userService.userImage(entityId, file);
       } else {
         observable = this.userService.userBanner(entityId, file);

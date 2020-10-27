@@ -29,11 +29,13 @@ export class UsersService extends BaseService<User> {
   }
 
   userImage(id: number, file: File): Observable<HttpEvent<User>> {
+    console.log('enviando avatar');
     const url = `${this.url}/${id}`;
     return this.sendImage(url, file, 'avatar');
   }
 
   userBanner(id: number, file: File): Observable<HttpEvent<User>> {
+    console.log('enviando banner');
     const url = `${this.url}/${id}`;
     return this.sendImage(url, file, 'banner');
   }
