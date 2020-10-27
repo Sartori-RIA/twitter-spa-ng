@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "twitter-c0ffa": {
+      "hosting": {
+        "twitter-spa-ng": [
+          "twitter-c0ffa"
+        ]
+      }
+    }
+  }
+}
