@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
       const params: UploadFileParams = {
         entityId: user.id,
-        type: 'banner'
+        type: 'avatar'
       };
       const dialog = this.dialog.open(UploadFileComponent, {
         disableClose: true,

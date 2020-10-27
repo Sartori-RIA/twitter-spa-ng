@@ -9,6 +9,7 @@ import {AppState} from '../index';
 import {TypedAction} from '@ngrx/store/src/models';
 import {UsersService} from '../../core/api/users.service';
 import {User} from '../../core/models/user';
+import {LOAD_USER} from '../auth/auth.actions';
 
 @Injectable()
 export class UploadFileEffects {
@@ -29,15 +30,6 @@ export class UploadFileEffects {
     })
   ));
 
-  sendBanner = createEffect(() => this.actions$.pipe(
-    ofType(UPLOAD_REQUEST),
-    concatMap(({file, entityId, entityCouncil, entityState}) => this.userService.userBanner(entityId, file).pipe(
-      takeUntil(this.actions$.pipe(ofType(UPLOAD_CANCEL))),
-      map(event => this.getActionFromHttpEvent(event)),
-      catchError(() => of(UPLOAD_FAILURE({error: ''})))
-    ))
-  ));
-
   constructor(private actions$: Actions,
               private store: Store<AppState>,
               private userService: UsersService) {
@@ -53,6 +45,7 @@ export class UploadFileEffects {
       case HttpEventType.ResponseHeader:
       case HttpEventType.Response:
         if (event.status === 200) {
+          this.store.dispatch(LOAD_USER());
           return UPLOAD_COMPLETED();
         } else {
           return UPLOAD_FAILURE({error: event.statusText});
