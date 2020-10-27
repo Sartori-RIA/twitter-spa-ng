@@ -12,7 +12,7 @@
     "serve:ssr": "node dist/twitter-spa-ng/server/main.js",
     "build:ssr": "ng build --prod && ng run twitter-spa-ng:server:production",
     "prerender": "ng run twitter-spa-ng:prerender",
-    "start:heroku":"node dist/twitter-spa-ng/server",
+    "start:heroku":"node dist/twitter-spa-ng/server/main.js",
     "postinstall":"npm run build:ssr"
   },
   "private": true,
