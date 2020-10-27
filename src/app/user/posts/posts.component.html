@@ -4,6 +4,7 @@
                [infiniteScrollThrottle]="100"
                [fromRoot]="true"
                (scrolled)="onScroll()"
+               (onRemove)="deletePost(post)"
                [post]="post"
 ></app-post-card>
 <app-loader *ngIf="loading"></app-loader>
