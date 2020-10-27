@@ -5,7 +5,10 @@ export const authFeatureSelector = createFeatureSelector<AuthState>(featureKey);
 
 export const selectCurrentUser = createSelector(
   authFeatureSelector,
-  (state) => state.user
+  (state) => {
+    console.log('eae');
+    return state.user
+  }
 );
 
 export const selectCurrentToken = createSelector(

@@ -2,14 +2,18 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {
   LOAD_USER,
-  LOAD_USER_DONE, LOAD_USER_FAILED,
+  LOAD_USER_DONE,
+  LOAD_USER_FAILED,
   SIGN_IN,
   SIGN_IN_DONE,
   SIGN_IN_REFUSED,
   SIGN_OUT,
   SIGN_UP,
   SIGN_UP_DONE,
-  SIGN_UP_FAIL, UPDATE_USER, UPDATE_USER_DONE, UPDATE_USER_FAILED
+  SIGN_UP_FAIL,
+  UPDATE_USER,
+  UPDATE_USER_DONE,
+  UPDATE_USER_FAILED
 } from './auth.actions';
 import {catchError, map, mergeMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';

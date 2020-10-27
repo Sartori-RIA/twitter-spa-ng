@@ -1,4 +1,4 @@
-<div *ngIf="profile$ | async; let user">
+<div *ngIf="user">
 
   <div [ngStyle]="{
     backgroundImage: 'url(' + user.banner.url + ')',
@@ -14,7 +14,7 @@
         <ngx-avatar class="my-avatar"
                     size="200"
                     (clickOnAvatar)="openAvatarFull(user)"
-                    [src]="user.avatar.thumb.url">
+                    [src]="user.avatar.url">
         </ngx-avatar>
         <h2>{{user.name}}</h2>
         <span class="muted-text">@{{user.user_name}}</span>

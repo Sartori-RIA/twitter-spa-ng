@@ -33,8 +33,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.form.controls.password.setValidators([Validators.required, Validators.minLength(8)]);
-    if (!!this.form.controls.password.value) {
+    if (this.form.controls.password?.value?.length > 0) {
+      this.form.controls.password.setValidators([Validators.required, Validators.minLength(8)]);
+    } else {
       this.form.controls.password.clearValidators();
     }
     this.form.controls.password.updateValueAndValidity();
@@ -46,16 +47,18 @@ export class EditProfileComponent implements OnInit {
 
   private updateForm(user: User): void {
     this.form.patchValue({
-      email: user.email,
-      name: user.name
+      email: user?.email,
+      name: user?.name,
+      id: user?.id,
     });
   }
 
   private createForm(user: User): void {
     this.form = this.fb.group({
+      id: [null, Validators.required],
       email: [null, [Validators.required, Validators.email], [CookieCodeValidators.uniqueEmail(this.userService, user.email)]],
-      name: [null, Validators.required, [CookieCodeValidators.uniqueUsername(this.userService, user.user_name)]],
-      password: [null, Validators.required, Validators.minLength(8)],
+      name: [null, Validators.required],
+      password: [null, [Validators.required, Validators.minLength(8)]],
       confirm_password: []
     }, PasswordValidators.mismatchedPasswords('password', 'confirm_password'));
   }

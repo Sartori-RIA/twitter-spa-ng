@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable, Subscription, zip} from 'rxjs';
+import {Observable, Subject, zip} from 'rxjs';
 import {User} from '../../core/models/user';
-import {map, take} from 'rxjs/operators';
+import {map, take, takeUntil} from 'rxjs/operators';
 import {FollowService} from '../../core/api/follow.service';
 import {PostagesService} from '../../core/api/postages.service';
 import {select, Store} from '@ngrx/store';
@@ -16,7 +16,8 @@ import {LOAD_USER} from '../../store/auth/auth.actions';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
@@ -25,23 +26,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
   followsCount$: Observable<number>;
   followersCount$: Observable<number>;
   postagesCount$: Observable<number>;
-  subscription: Subscription;
+  destroy$ = new Subject<boolean>();
   alreadyFollow: boolean;
   follow: Follow;
+  user: User;
 
   constructor(private activatedRoute: ActivatedRoute,
               private store: Store<AppState>,
               private followService: FollowService,
+              private cdRefs: ChangeDetectorRef,
               private dialog: MatDialog,
               private postagesService: PostagesService) {
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.subscription = zip(this.profile$, this.user$).subscribe(([profile, user]) => {
+    zip(this.profile$, this.user$).pipe(takeUntil(this.destroy$)).subscribe(([profile, user]) => {
       this.followersCount$ = this.followService.followersCount(profile.id).pipe(map((res) => res.total));
       this.followsCount$ = this.followService.followsCount(profile.id).pipe(map((res) => res.total));
       this.postagesCount$ = this.postagesService.userPostagesCount(profile.id).pipe(map((res) => res.total));
@@ -53,6 +57,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.alreadyFollow = false;
         });
       }
+    });
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
+      this.profile$.pipe(take(1)).subscribe((profile) => {
+        if (user.id === profile.id) {
+          this.user = user;
+        } else {
+          this.user = profile;
+        }
+      });
     });
   }
 

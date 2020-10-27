@@ -5,6 +5,7 @@ import {HttpClient, HttpEvent, HttpResponse} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {LocalStorage} from '../../utils/storage';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class UsersService extends BaseService<User> {
     return super.show(user.id);
   }
 
+  update(data: User): Observable<User> {
+    return super.update(data).pipe(tap((user) => LocalStorage.setUser(user)));
+  }
+
   checkEmail(email: string): Observable<HttpResponse<any>> {
     return this.http.get<any>(`${this.url}/check/email`, {observe: 'response', params: {q: email}});
   }
@@ -29,13 +34,11 @@ export class UsersService extends BaseService<User> {
   }
 
   userImage(id: number, file: File): Observable<HttpEvent<User>> {
-    console.log('enviando avatar');
     const url = `${this.url}/${id}`;
     return this.sendImage(url, file, 'avatar');
   }
 
   userBanner(id: number, file: File): Observable<HttpEvent<User>> {
-    console.log('enviando banner');
     const url = `${this.url}/${id}`;
     return this.sendImage(url, file, 'banner');
   }

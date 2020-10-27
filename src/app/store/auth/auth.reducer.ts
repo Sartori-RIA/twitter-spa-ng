@@ -38,38 +38,22 @@ const authReducer = createReducer(initialState,
   on(SIGN_IN,
     SIGN_UP,
     LOAD_USER,
-    UPDATE_USER, (state) => ({...state, loading: true})),
+    UPDATE_USER,
+    (state) => ({...state, loading: true})),
   on(SIGN_IN_DONE,
     SIGN_UP_DONE,
-    (state, {user}) => ({
-      ...state,
-      user,
-      errors: undefined,
-      loading: false
-    })),
+    (state, {user}) => ({...state, user, errors: undefined, loading: false})),
   on(SIGN_OUT, () => initialState),
-  on(ALREADY_LOGGED_IN, (state, {token}) => ({
-    ...state,
-    token,
-    loading: false,
-    user: LocalStorage.user()
-  })),
+  on(ALREADY_LOGGED_IN,
+    (state, {token}) => ({...state, token, loading: false, user: LocalStorage.user()})),
   on(SIGN_IN_REFUSED,
     SIGN_UP_FAIL,
     LOAD_USER_FAILED,
     UPDATE_USER_FAILED,
-    (state, {errors}) => ({
-      ...state,
-      errors: errors.error,
-      loading: false
-    })),
+    (state, {errors}) => ({...state, errors: errors.error, loading: false})),
   on(LOAD_USER_DONE,
-    UPDATE_USER_DONE, (state, {user}) => ({
-      ...state,
-      user,
-      loading: false
-    })
-  ),
+    UPDATE_USER_DONE,
+    (state, {user}) => ({...state, user, loading: false}))
 );
 
 export function reducer(state: AuthState | undefined, action: Action): AuthState {
