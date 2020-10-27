@@ -23,7 +23,7 @@ const NG_MODULES = [
 const LIBS_MODULES = [
   AvatarModule,
   CodeInputModule,
-  InfiniteScrollModule
+  InfiniteScrollModule,
 ];
 
 const COMPONENTS = [

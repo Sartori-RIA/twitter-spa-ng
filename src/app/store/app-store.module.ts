@@ -9,6 +9,7 @@ import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModu
 import {CustomSerializer} from './custom-router-serializer';
 import {AuthEffects} from './auth/auth.effects';
 import {UserEffects} from './user/user.effects';
+import {UploadFileEffects} from './upload-file/upload-file.effects';
 
 @NgModule({
   imports: [
@@ -23,7 +24,12 @@ import {UserEffects} from './user/user.effects';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([AppEffects, AuthEffects, UserEffects]),
+    EffectsModule.forRoot([
+      AppEffects,
+      AuthEffects,
+      UserEffects,
+      UploadFileEffects
+    ]),
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
       navigationActionTiming: NavigationActionTiming.PostActivation

@@ -16,7 +16,7 @@ export class PostagesService {
   }
 
   index(params?: { [key: string]: string | string[] }): Observable<HttpResponse<Postage[]>> {
-    return this.http.get<Postage[]>(`${environment.api_url}/postages`, {params, observe: 'response'}).pipe();
+    return this.http.get<Postage[]>(`${environment.api_url}postages`, {params, observe: 'response'}).pipe();
   }
 
   userPostages(userId: number, params?: { [key: string]: string | string[] }): Observable<HttpResponse<Postage[]>> {

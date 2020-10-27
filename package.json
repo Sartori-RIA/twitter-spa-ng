@@ -34,6 +34,7 @@
     "firebase": "^7.13.1",
     "moment": "^2.29.1",
     "ngx-avatar": "^4.0.0",
+    "ngx-dropzone": "^2.2.2",
     "ngx-infinite-scroll": "^9.1.0",
     "ngx-validators": "^5.2.1",
     "rxjs": "~6.6.0",

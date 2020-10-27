@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {noop, Observable, Subscription, zip} from 'rxjs';
+import {Observable, Subscription, zip} from 'rxjs';
 import {User} from '../../core/models/user';
 import {map, take} from 'rxjs/operators';
 import {FollowService} from '../../core/api/follow.service';
@@ -8,8 +8,10 @@ import {PostagesService} from '../../core/api/postages.service';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../store';
 import {selectCurrentUser} from '../../store/auth/auth.selectors';
-import {HttpErrorResponse} from '@angular/common/http';
 import {Follow} from '../../core/models/follow';
+import {UploadFileComponent, UploadFileParams} from '../../upload-file/upload-file/upload-file.component';
+import {MatDialog} from '@angular/material/dialog';
+import {LOAD_USER} from '../../store/user/user.actions';
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private activatedRoute: ActivatedRoute,
               private store: Store<AppState>,
               private followService: FollowService,
+              private dialog: MatDialog,
               private postagesService: PostagesService) {
   }
 
@@ -53,8 +56,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  openAvatarFull(user: User): void {
-    noop();
+  openAvatarFull(profile: User): void {
+    this.user$.pipe(take(1)).subscribe((user) => {
+      if (user.id === profile.id) {
+        return;
+      }
+      const params: UploadFileParams = {
+        entityId: user.id,
+        type: 'banner'
+      };
+      const dialog = this.dialog.open(UploadFileComponent, {
+        disableClose: true,
+        minWidth: '33%',
+        data: params
+      });
+      dialog.afterClosed().pipe(take(1)).subscribe((res) => {
+        if (res?.success) {
+          this.store.dispatch(LOAD_USER());
+        }
+      });
+    });
   }
 
   onFollowClick(profile: User): void {
@@ -74,6 +95,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.alreadyFollow = true;
           });
       }
+    });
+  }
+
+  uploadBanner(profile: User): void {
+    this.user$.pipe(take(1)).subscribe((user) => {
+      if (profile.id !== user.id) {
+        return;
+      }
+      const params: UploadFileParams = {
+        entityId: user.id,
+        type: 'banner'
+      };
+      const dialog = this.dialog.open(UploadFileComponent, {
+        disableClose: true,
+        minWidth: '33%',
+        data: params
+      });
+      dialog.afterClosed().pipe(take(1)).subscribe((res) => {
+        if (res?.success) {
+          this.store.dispatch(LOAD_USER());
+        }
+      });
     });
   }
 }

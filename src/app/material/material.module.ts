@@ -12,6 +12,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 const MAT_MODULES = [
@@ -27,6 +28,7 @@ const MAT_MODULES = [
   MatListModule,
   MatDialogModule,
   MatProgressSpinnerModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({
