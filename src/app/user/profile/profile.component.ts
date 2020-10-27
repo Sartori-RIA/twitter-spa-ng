@@ -60,7 +60,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
     this.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       this.profile$.pipe(take(1)).subscribe((profile) => {
-        if (user.id === profile.id) {
+        if (user == null) {
+          this.user = profile;
+        }
+        if (user?.id === profile?.id) {
           this.user = user;
         } else {
           this.user = profile;

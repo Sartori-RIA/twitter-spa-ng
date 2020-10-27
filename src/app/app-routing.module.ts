@@ -25,7 +25,7 @@ const config: ExtraOptions = {
   useHash: true,
   anchorScrolling: 'enabled',
   scrollPositionRestoration: 'enabled',
-  onSameUrlNavigation: 'ignore',
+  onSameUrlNavigation: 'reload',
 };
 
 @NgModule({
