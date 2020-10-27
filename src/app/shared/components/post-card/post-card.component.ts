@@ -29,7 +29,6 @@ export class PostCardComponent implements OnInit {
   }
 
   destroyPostage(): void {
-    console.log('eaee');
     this.onRemove.emit(this.post);
   }
 
